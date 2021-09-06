@@ -114,7 +114,7 @@ void cfg_do_parse(const char *config_file_name) {
 
     // cd into directory where scanbd.conf lives
     
-    strncpy(config_file, config_file_name, PATH_MAX);
+    strncpy(config_file, config_file_name, PATH_MAX-1);
 
     scanbd_conf_dir = dirname(config_file);
     assert(scanbd_conf_dir);
@@ -150,13 +150,13 @@ char *make_script_path_abs(const char *script) {
 
     char* script_abs = malloc(PATH_MAX);
     assert(script_abs);
-    strncpy(script_abs, SCANBD_NULL_STRING, PATH_MAX);
+    strncpy(script_abs, SCANBD_NULL_STRING, PATH_MAX-1);
 
     assert(script);
 
     if ((script[0] == '/') || (strcmp(script, SCANBD_NULL_STRING) == 0)) {
         // Script has already an absolute path or is an empty string
-        strncpy(script_abs, script, PATH_MAX);
+        strncpy(script_abs, script, PATH_MAX-1);
         slog(SLOG_DEBUG, "using absolute script path: %s", script_abs);
     } else {
         // script has a relative path, determine the directory

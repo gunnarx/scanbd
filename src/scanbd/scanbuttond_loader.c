@@ -42,7 +42,7 @@ int scanbtnd_init() {
         backends_dir = backends_dir_abs;
     }
     if (backends_dir) {
-        strncpy(lib_dir, backends_dir, PATH_MAX );
+        strncpy(lib_dir, backends_dir, PATH_MAX-1);
     }
 
 
@@ -64,7 +64,7 @@ int scanbtnd_init() {
 }
 
 void scanbtnd_set_libdir(const char* dir){
-    strncpy(lib_dir, dir, PATH_MAX);
+    strncpy(lib_dir, dir, PATH_MAX-1);
 }
 
 char *scanbtnd_get_lib_dir(void) {
@@ -84,7 +84,7 @@ backend_t* scanbtnd_load_backend(const char* filename){
     void* dll_handle;
 
     char dll_path[PATH_MAX];
-    strncpy(dll_path, lib_dir, PATH_MAX);
+    strncpy(dll_path, lib_dir, PATH_MAX-1);
     strncat(dll_path, "/", PATH_MAX - strlen(dll_path));
     strncat(dll_path, filename, PATH_MAX - strlen(dll_path));
     strncat(dll_path, ".so", PATH_MAX - strlen(dll_path));

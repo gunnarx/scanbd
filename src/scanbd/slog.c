@@ -30,7 +30,7 @@ static char lpre[LINE_MAX] = "";
 static int isInitialized = 0;
 
 void slog_init(const char *string) {
-    strncpy(lpre, string, LINE_MAX);
+    strncpy(lpre, string, LINE_MAX-1);
     isInitialized = 1;
 }
 
